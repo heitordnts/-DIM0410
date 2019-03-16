@@ -5,18 +5,13 @@
 
 using namespace std;
 
-void insertElement(int e, queue<int> f, vector<vector<int>> t){
-	//procura um teammate em 'f' e insere 'e' apos o mesmo se nao insere no final de 'f'
-
-	
-
+void insertElement(int e, queue<int> f, vector< vector<int> > t){
 
 }
 
-
 int main(){
 	queue<int> fila;
-	vector<vector<int>> times;
+	vector<vector<int> > times;
 	string cmd;
 	int t = 1, tam = 0;
 
