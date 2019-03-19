@@ -14,15 +14,18 @@ int main(){
 	}
 	cin >> num_queries;
 
-	int timer=0;
-
-	for(int i = 0; i < num_queries;++i){
-		while(1){
-			qid_time.find(timer);
+	int timer=1;
+	while(timer <= 3000){
+			
+		for(map<int,int>::iterator it=qid_time.begin(); it!=qid_time.end(); it++){
+			if(timer % it->second == 0){
+				cout << it->first << endl;
+				num_queries--;
+			}
+			if(num_queries <= 0) break;
 		}
-
-		cout << "\n\n\n";
+		timer++;
+		if(num_queries <= 0) break;
 	}
-
 	return 0;
 }

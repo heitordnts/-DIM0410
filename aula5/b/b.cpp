@@ -1,5 +1,6 @@
 #include <iostream>
 #include <set>
+#include <cstdio>
 
 using namespace std;
 
@@ -11,12 +12,13 @@ int main(){
 		int cd, common_cds;
 		common_cds = 0;
 		for(int i=0;i<N;i++){		
-			cin >> cd;
+			scanf("%d",&cd);
 			s1.insert(cd);
+
 		}
 
 		for(int i=0;i<M;i++){
-			cin >> cd;
+			scanf("%d",&cd);
 			s2.insert(cd);
 		}
 		set<int>::iterator found;
@@ -24,7 +26,8 @@ int main(){
 //			cout << *it << " " << endl;
 			if(s2.find(*it) != s2.end()) common_cds++;
 		}
-		cout << common_cds << endl;		
+		printf("%d\n",common_cds);
+	//	cout << common_cds << endl;		
 		s1.clear();
 		s2.clear();
 	}
