@@ -45,16 +45,19 @@ int main(){
 			if (maior < qtd) maior = qtd;
 
 		}
+		vector<int>::iterator it;
 		for(int j=0;j < 3;++j){
 			int size = onlyIdid[j].size();
-			if(size == maior){
-				cout << j+1 << " " << size << " ";
-				auto it = onlyIdid[j].begin();
-				for(;it+1!= onlyIdid[j].end();it++){
-					cout << *it << " ";
+			if(size == maior)
+				if(size <= 0)
+					cout << j+1 << " " << size << endl;
+				else{
+					cout << j+1 << " " << size << " ";
+					for(it=onlyIdid[j].begin();it+1!= onlyIdid[j].end();it++){
+						cout << *it << " ";
+					}
+					cout << *it << endl;	
 				}
-				cout << *it << endl;	
-			}
 		}
 	}//casos testes
 	return 0;
