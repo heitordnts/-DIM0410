@@ -26,7 +26,7 @@ int main(){
         int count = 0;
         for(auto it = froshs.begin();it != froshs.end();it++){
            if(it->second == maior){
-                count++;
+                count+=it->second;
            } 
         }
         cout << count << endl; 
