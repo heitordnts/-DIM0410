@@ -3,10 +3,10 @@
 using namespace std;
 
 int main(){
-	map<vector<int>,int > froshs;
 	int n, course, f=0;
 
 	while(cin >> n, n != 0){
+	    map<vector<int>,int > froshs;
 		for(int i=0;i<n;i++){
 			vector<int> temp;
 			for(int j=0;j<5;j++){
@@ -14,11 +14,23 @@ int main(){
 				temp.push_back(course);
 			}
 			sort(temp.begin(), temp.end());
+
 			froshs[temp] += 1;
 			temp.clear();
 		}
-		cout << max_element(froshs.begin(), froshs.end())->second << endl;
-
+        int maior = -1;
+        for(auto it = froshs.begin();it != froshs.end();it++){
+            int most = it->second;
+            if(most > maior) maior = most;
+        }
+        int count = 0;
+        for(auto it = froshs.begin();it != froshs.end();it++){
+           if(it->second == maior){
+                count++;
+           } 
+        }
+        cout << count << endl; 
+        froshs.clear();
 	}
 	return 0;
 }
