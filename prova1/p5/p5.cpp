@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+
 void tolowerCase(string &s){
 	std::locale loc;
 	for(int i=0; i< s.length();i++){
@@ -9,14 +10,19 @@ void tolowerCase(string &s){
 
 }
 
+struct comp {
+  bool operator() (string a, string b) const{
+		return lexicographical_compare(a.begin(),a.end(),b.begin(),b.end());
+	}
+};
 
 int main(){
 
 	string s;
+	map<string, pair<int,string>> anagrams_number;
 
 	while(getline(cin, s), s!="#"){
 		//transforma em lista de strings
-		map<string, pair<int,string>> anagrams_number;
 		vector<string> splitted;
 		char* cstr = const_cast<char*>(s.c_str());
 		char* curr;
@@ -39,15 +45,18 @@ int main(){
 			}
 		}
 
-		for(auto it=anagrams_number.begin();it!=anagrams_number.end(); it++){	
-			if(it->second.first == 1) 
-				cout << it->second.second << endl; 
-		}
-		//mapeia
-		//conta
-
 	}
 
+		vector<string> ananagrams;
+		for(auto it=anagrams_number.begin();it!=anagrams_number.end(); it++){	
+			if(it->second.first == 1) 
+				//cout << it->second.second << endl; 
+				ananagrams.push_back(it->second.second);	
+		}
+		sort(ananagrams.begin(), ananagrams.end());
+		for(auto anng:ananagrams){	
+			cout << anng << endl; 
+		}
 
 	return 0;
 }
