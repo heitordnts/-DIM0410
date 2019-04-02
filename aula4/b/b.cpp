@@ -5,8 +5,13 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 void insertElement(int e, queue<int> f, vector< vector<int> > t){
 
+=======
+void insertElement(int e, queue<int> f, vector<vector<int>> t){
+	//procura um teammate em 'f' e insere 'e' apos o mesmo se nao insere no final de 'f'
+>>>>>>> gulosos
 }
 
 int main(){
