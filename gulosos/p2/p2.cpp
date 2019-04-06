@@ -2,35 +2,34 @@
 
 using namespace std;
 
-int main(){ 
-	int n;
+int main()
+{  
+    int n;
 
-	cin >> n;
+    cin >> n;
 
-	while(n--){	
-		int m,c;
-		vector<int> coins;
-		cin >> m;
-		for(int i=0;i<m;i++){
-			cin >> c;
-			coins.push_back(c);
-		}//fim de entrada
+    while (n--){
+        int m;
+        cin >> m;
 
-		int x = coins.back() * 2 - 1;
-		int count = 0;
+        vector<int> coins;
 
-		auto p = coins.rbegin();
-		
-		for(;p != coins.rend();p++){
-			if(x - *p < 0) continue;
-			else {
-				x = x - *p;
-				count ++;
-			}
-		}
-		cout << count << endl;	
-	}
-	return 0;
+        for (int i = 0; i < m; ++i){
+            int c;
+            cin >> c;
+            coins.push_back(c);
+        }
+
+        int sum = 1;
+        int num_coins = coins.size() > 1 ? 2 : 1;
+
+        for (int i = 1; i < coins.size() - 1; ++i)
+            if (sum + coins[i] < coins[i + 1]){
+                sum += coins[i];
+                num_coins++;
+            }
+		cout << num_coins << endl;
+    }
+    return 0;
 }
-
 
