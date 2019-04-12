@@ -19,8 +19,8 @@ int sum(veci conj,veci tracks, int N, int i, veci &elements){
 	}
 	if(result < current_sum && current_sum <= N){
 		result = current_sum;
-		veci aux(conj);
-		elements.assign(aux.begin(), aux.end());
+
+		elements.assign(conj.begin(), conj.end());
 	}
 
 	return result;
@@ -43,8 +43,13 @@ int main(){
 			cin >> track;
 			tracks.push_back(track);
 		}//fim de entrada
+		
+		int s = sum(conj, tracks, N, 0,elements);
 		for_each(elements.begin(), elements.end(), [&] (int n) { cout << n << " ";});
-		cout << "sum: " << sum(conj, tracks, N, 0,elements) << endl;
+
+		cout << "sum: " << s << endl;
+
+		
 		tracks.clear();
 		conj.clear();
 	}
