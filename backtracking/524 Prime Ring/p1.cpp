@@ -2,6 +2,8 @@
 
 using namespace std;
 
+int v[16]={1};
+bool mark[16]={1};;
 
 bool isPrime(int n){
 	for(int i=2; i<= n/2; i++){
@@ -10,8 +12,21 @@ bool isPrime(int n){
 	return true;
 }
 
-int *v;
-bool *mark;
+int backtracking(int n,int j){	
+
+	for(int i=2;i<=n;i++){
+		if(mark[i] == 0){
+			if(isPrime(i+j)){
+				v[j] = i;
+				mark[i] = 1;
+				backtracking(n, j+1);	
+				mark[i] = 0;
+			}
+		}
+	}
+
+}
+
 
 int main(){
 
