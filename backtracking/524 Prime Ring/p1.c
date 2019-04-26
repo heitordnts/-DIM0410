@@ -1,24 +1,21 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <stdio.h>
 
 int v[128]={1};
-bool mark[128]={1};
+int mark[128]={1};;
 
-bool isPrime(int n){
+int isPrime(int n){
 	for(int i=2; i <= n/2; i++){
-		if(n%i == 0) return false;
+		if(n%i == 0) return 0;
 	}
-	return true;
+	return 1;
 }
 
 int backtracking(int n,int j){	
 	if(j == n){
 		if(isPrime(v[0] + v[j-1])){
-			for(int i=0;i<n-1;i++)
-				cout << v[i] << " ";
-				
-			cout<< v[n-1] << endl;
+			for(int i=0;i<n;i++)
+				printf("%d ",v[i]);
+			printf("\n");
 		}
 		return 0;
 
@@ -33,7 +30,7 @@ int backtracking(int n,int j){
 			}
 		}
 	}
-	return 0;
+
 }
 
 
@@ -41,11 +38,12 @@ int main(){
 
 	int n,c=1;
 
-	while(cin>>n){
-		if(c != 1)
-			cout << endl;
-		cout << "Case " << c++ << ":\n";
+	while(1){
+		scanf("%d",&n);
+		if(feof(stdin))break;
+		printf("Case %d:\n",c++);
 		backtracking(n,1);
+		printf("\n");
 	}
 
 	return 0;
