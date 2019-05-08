@@ -2,6 +2,11 @@
 
 using namespace std;
 
+struct numLetter{
+	int num;
+	char state;
+};
+
 int matchq(const char *q,const char *s,int f,int &fi){
 	int i,k;
 
