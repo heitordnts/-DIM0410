@@ -2,13 +2,7 @@
 
 using namespace std;
 
-#define N 100
-
-
-int G[N][N];
 int forbidden[10000][4];
-
-
 
 void printS(int *state){
 	for(int i=0;i<4;i++)
@@ -33,12 +27,11 @@ int main(){
 				cin >> forbidden[i][j]; }
 		}	
 
-		for(int j=0;j<n_fbd;j++){
-			printS(forbidden[j]);
-		}
+		//for(int j=0;j<n_fbd;j++){
+			//printS(forbidden[j]);
+		//}
 	}
 
 	
 	return 0;
 }
-
