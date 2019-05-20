@@ -42,8 +42,9 @@ int bfs(Node orig, Node targ){
 		for(int i=0;i<4;i++){
 			Node aux = temp;
 			d = ((aux.data / (pot10[i])) % 10 );
+			cout << aux.data << "/" << pot10[i] << "%" << 10 << " = " << d << endl;
 			if(d == 9){
-				newValue = (aux.data + pot10[i] - pot10[i]*10);
+				newValue = (aux.data - 9*pot10[i]);
 			}
 			else{
 				newValue = (aux.data + pot10[i]);
