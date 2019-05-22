@@ -13,8 +13,8 @@ struct Node{
 };
 
 queue<Node> q;
-unordered_set<int> forbidden;
-unordered_set<int> visited;
+//unordered_set<int> visited;
+int visited[10001];
 int pot10[] = {1000,100,10,1};
 
 //void printS(Node &state){
@@ -27,40 +27,44 @@ inline bool success(Node &a,Node &b){
 	return a.data == b.data;
 }
 
-
 int bfs(Node orig, Node targ){
 	q.push(orig);
 	int current_lvl = 0;
 	int newValue,d;
-	while(!q.empty() &&  current_lvl < 1){
-		Node temp = q.front();
+	Node aux,temp;
+	while(!q.empty() &&  current_lvl < 15){
+		temp = q.front();
 		current_lvl = temp.level;
 		q.pop();
-		//cout << "filhos de " << temp.data << " nivel " << temp.level << " queue size: " << q.size() << endl;
+		visited[temp.data] = 1;
+		if(current_lvl %13 == 0) 
+			cout << "filhos de " << temp.data << " nivel " << temp.level << " queue size: " << q.size() << endl;
 		//printS(temp);
 		if(success(temp,targ)) return temp.level;
+		//for(int i=0;i<4;i++){
+		//	aux = temp;
+		//	d = ((aux.data / (pot10[i])) % 10 );
+		//	//cout << aux.data << "/" << pot10[i] << "%" << 10 << " = " << d << endl;
+		//	if(d == 9){
+		//		newValue = (aux.data - 9*pot10[i]);
+		//	}
+		//	else{
+		//		newValue = (aux.data + pot10[i]);
+		//	}
+		//	aux.data = newValue;
+		//	//cout << temp.data << " -> " << aux.data << endl;
+		//	aux.level = temp.level+1;
+		//		
+		//	//if(visited.find(aux.data) == visited.end()){
+		//	if(visited[newValue] == 0){
+		//		//visited[newValue] = 1;
+		//		q.push(aux);
+		//		//printS(aux);
+		//	}
+		//}
+		//cout << endl;
 		for(int i=0;i<4;i++){
-			Node aux = temp;
-			d = ((aux.data / (pot10[i])) % 10 );
-			cout << aux.data << "/" << pot10[i] << "%" << 10 << " = " << d << endl;
-			if(d == 9){
-				newValue = (aux.data - 9*pot10[i]);
-			}
-			else{
-				newValue = (aux.data + pot10[i]);
-			}
-			aux.data += newValue;
-			cout << temp.data << " -> " << aux.data << endl;
-			aux.level = temp.level+1;
-				
-			if(visited.find(aux.data) == visited.end()){
-				q.push(aux);
-				//printS(aux);
-			}
-		}
-		cout << endl;
-		for(int i=0;i<4;i++){
-			Node aux = temp;
+			aux = temp;
 			d = (aux.data / (pot10[i]) % 10 );
 			if(d == 0){
 				newValue = (aux.data + 9*pot10[i]);
@@ -68,13 +72,14 @@ int bfs(Node orig, Node targ){
 			else{
 				newValue = (aux.data - pot10[i]);
 			}
-			aux.data += newValue;
-			cout << temp.data << " -> " << aux.data << endl;
+			aux.data = newValue;
+			//cout << temp.data << " -> " << aux.data << endl;
 			aux.level = temp.level+1;
 
-			if(visited.find(aux.data) == visited.end()){// && 
-				//forbidden.find(ToINT(aux)) == forbidden.end()){
+			//if(visited.find(aux.data) == visited.end()){// && 
+			if(visited[newValue] == 0){
 				q.push(aux);
+				//printS(aux);
 			}
 				//printS(aux);
 		}
@@ -93,6 +98,7 @@ int main(){
 	origin.data = target.data = 0;
 	cin >> t;
 	while(t--){
+		memset(visited,0,10000);
 		origin.level = 0;
 		for(int i=0;i<4;i++){
 			cin >> a;
@@ -105,17 +111,20 @@ int main(){
 		cin >> n_fbd;
 		
 		for(int i=0;i<n_fbd;i++){
+			aux=0;
 			for(int i=0;i<4;i++){
 				cin >> a;
 				aux+=pot10[i]*a;
 			}
-			visited.insert(aux);	
+			cout << aux << endl;
+			visited[aux] = 1;
+			//visited.insert(aux);	
 		}	
 		cout <<	bfs(origin, target) << endl;
 
 
 		cin.ignore();
-		visited.clear();
+		//visited.clear();
 		q = queue<Node>();
 	}
 
