@@ -27,41 +27,45 @@ inline bool success(Node &a,Node &b){
 	return a.data == b.data;
 }
 
+//8056   6508
+
+ 
 int bfs(Node orig, Node targ){
 	q.push(orig);
 	int current_lvl = 0;
 	int newValue,d;
 	Node aux,temp;
-	while(!q.empty() &&  current_lvl < 15){
+	while(!q.empty() /*&&  current_lvl < 15*/){
 		temp = q.front();
-		current_lvl = temp.level;
+		//current_lvl = temp.level;
 		q.pop();
-		visited[temp.data] = 1;
-		if(current_lvl %13 == 0) 
-			cout << "filhos de " << temp.data << " nivel " << temp.level << " queue size: " << q.size() << endl;
+		if(visited[temp.data] == 1)
+			continue;
+		else
+			visited[temp.data] = 1;
 		//printS(temp);
 		if(success(temp,targ)) return temp.level;
-		//for(int i=0;i<4;i++){
-		//	aux = temp;
-		//	d = ((aux.data / (pot10[i])) % 10 );
-		//	//cout << aux.data << "/" << pot10[i] << "%" << 10 << " = " << d << endl;
-		//	if(d == 9){
-		//		newValue = (aux.data - 9*pot10[i]);
-		//	}
-		//	else{
-		//		newValue = (aux.data + pot10[i]);
-		//	}
-		//	aux.data = newValue;
-		//	//cout << temp.data << " -> " << aux.data << endl;
-		//	aux.level = temp.level+1;
-		//		
-		//	//if(visited.find(aux.data) == visited.end()){
-		//	if(visited[newValue] == 0){
-		//		//visited[newValue] = 1;
-		//		q.push(aux);
-		//		//printS(aux);
-		//	}
-		//}
+		for(int i=0;i<4;i++){
+			aux = temp;
+			d = ((aux.data / (pot10[i])) % 10 );
+			//cout << aux.data << "/" << pot10[i] << "%" << 10 << " = " << d << endl;
+			if(d == 9){
+				newValue = (aux.data - 9*pot10[i]);
+			}
+			else{
+				newValue = (aux.data + pot10[i]);
+			}
+			aux.data = newValue;
+			//cout << temp.data << " -> " << aux.data << endl;
+			aux.level = temp.level+1;
+				
+			//if(visited.find(aux.data) == visited.end()){
+			if(visited[newValue] == 0){
+				//visited[newValue] = 1;
+				q.push(aux);
+				//printS(aux);
+			}
+		}
 		//cout << endl;
 		for(int i=0;i<4;i++){
 			aux = temp;
@@ -85,7 +89,6 @@ int bfs(Node orig, Node targ){
 		}
 	}
 		
-	cout << "done\n";
 
 	return -1;
 }
@@ -116,7 +119,6 @@ int main(){
 				cin >> a;
 				aux+=pot10[i]*a;
 			}
-			cout << aux << endl;
 			visited[aux] = 1;
 			//visited.insert(aux);	
 		}	
