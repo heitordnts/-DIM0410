@@ -11,8 +11,8 @@ struct Node{
 };
 
 queue<Node> q;
-//unordered_set<int> visited;
-int visited[10001];
+unordered_set<int> visited;
+//int visited[10001];
 int pot10[] = {1000,100,10,1};
 
 inline bool success(Node &a,Node &b){
@@ -28,12 +28,13 @@ int bfs(Node orig, Node targ){
 		temp = q.front();
 		//current_lvl = temp.level;
 		q.pop();
-		if(visited[temp.data] == 1)
+		if(visited.find(temp.data) != visited.end())
 			continue;
-		else{
-			visited[temp.data] = 1;
-		}
+		else
+			visited.insert(temp.data);
+
 		if(success(temp,targ)) return temp.level;
+
 		for(int i=0;i<4;i++){
 			aux = temp;
 			d = ((aux.data / (pot10[i])) % 10 );
@@ -46,9 +47,7 @@ int bfs(Node orig, Node targ){
 			aux.data = newValue;
 			aux.level = temp.level+1;
 				
-			//if(visited.find(aux.data) == visited.end()){
-			if(visited[newValue] == 0){
-				//visited[newValue] = 1;
+			if(visited.find(aux.data) == visited.end()){
 				q.push(aux);
 			}
 		}
@@ -64,8 +63,7 @@ int bfs(Node orig, Node targ){
 			aux.data = newValue;
 			aux.level = temp.level+1;
 
-			//if(visited.find(aux.data) == visited.end()){// && 
-			if(visited[newValue] == 0){
+			if(visited.find(aux.data) == visited.end()){// && 
 				q.push(aux);
 			}
 		}
@@ -80,10 +78,8 @@ int main(){
 	int aux=0;	
 	cin >> t;
 	while(t--){
-		memset(visited,0,10001);
 		origin.level = 0;
-		origin.data = 0;
-		target.data = 0;
+		origin.data = target.data = 0;
 		for(int i=0;i<4;i++){
 			cin >> a;
 			origin.data+=pot10[i]*a;
@@ -101,12 +97,13 @@ int main(){
 				aux+=pot10[i]*a;
 			}
 			if(aux != origin.data)
-				visited[aux] = 1;
+				visited.insert(aux);
+			//visited[aux] = 1;
 		}	
-		cout << "origin main: " << origin.data << endl;
 		cout <<	bfs(origin, target) << endl;
 
 		cin.ignore();
+		visited.clear();
 		q = queue<Node>();
 	}
 	return 0;
