@@ -11,7 +11,7 @@ int main(){
 		std::cout << "fail bit: " << (std::cin.fail()) <<std::endl;
 		std::cout << "eof bit: " << (std::cin.eof()) <<std::endl;
 		std::cout << "bad bit: " << (std::cin.bad()) <<std::endl;
-		std::cin.clear();
+		std::cin.clear(std::ios_base::goodbit);
 
 	}
 
