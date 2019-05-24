@@ -23,7 +23,7 @@ int main(){
 	cin >> t;
 	cin.ignore();
 	while(t--){
-		memset(memo,-1,1000*1000);
+		memset(memo,-1,20000*20000);
 		memo[0][0] = 1;
 		cin >> r >> c;
 		cin.ignore();
