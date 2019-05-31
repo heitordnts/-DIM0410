@@ -43,7 +43,7 @@ int main(){
 		for(int i=0;i<m;i++){
 			for(int j=0;j<n;j++){
 				if( aux[i][j] == 0){
-					aux[i][j] = 1;
+					//aux[i][j] = 1;
 					if(grid[i][j] == '@'){
 						oilPlots++;
 						dfs(i,j);
