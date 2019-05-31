@@ -6,12 +6,12 @@
 #include <unordered_set>
 
 using namespace std;
-
+/*
 struct Node{
 	int id;
 	int ttl=0;
 };
-
+*/
 unordered_set<int> visitados;
 
 int bfs(map<int,list<int>> &G, map<int,int> &nivel, int orig,int ttl){
@@ -53,7 +53,6 @@ int main(){
 	map<int,list<int> > G;
 	map<int,int> nivel;
 	int casos=1;	
-	Node aux,aux2;
 	while(cin >> nc, nc!=0){
 		G.clear();
 		
