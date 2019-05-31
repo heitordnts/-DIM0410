@@ -20,6 +20,7 @@ int bfs(map<int,list<int>> &G, map<int,int> &nivel, int orig,int ttl){
 	int temp;	
 	int cont =0;	
 	q.push(orig);
+	if(G.find(orig) != G.end()){
 	while(!q.empty()){
 		temp = q.front();
 		q.pop();
@@ -38,6 +39,7 @@ int bfs(map<int,list<int>> &G, map<int,int> &nivel, int orig,int ttl){
 				q.push(No);	
 			}
 		}
+	}
 	}
 	for(auto &a: nivel){
 		//cout << a.first << " " << a.second << endl;
@@ -65,6 +67,10 @@ int main(){
 		}
 		while(1){	
 			visitados.clear();
+			nivel.clear();
+			for(auto &a: G){
+				nivel[a.first] =  0;
+			}
 			cin >> e1 >> e2;
 			
 			nivel[e1] = 0;
@@ -74,9 +80,6 @@ int main(){
 			cout << bfs(G,nivel,e1,e2) << " nodes not reachable from node " << e1 << " with TTL = " << e2 << "." << endl;
 
 			nivel.clear();
-			for(auto &a: G){
-				nivel[a.first] =  0;
-			}
 		}
 		cin.ignore();
 	}
