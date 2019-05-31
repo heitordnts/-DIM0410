@@ -58,7 +58,6 @@ int main(){
 		
 		for (int i=0;i<nc;i++){
 			cin >> e1 >> e2;
-
 			nivel[e2] = 0;
 			nivel[e1] = 0;
 			G[e1].push_back(e2);
@@ -67,6 +66,7 @@ int main(){
 		while(1){	
 			visitados.clear();
 			cin >> e1 >> e2;
+			
 			nivel[e1] = 0;
 			if(e1 == 0 && e2 == 0) break;	
 
