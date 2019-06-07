@@ -10,8 +10,8 @@ using namespace std;
 int G[101][101];
 
 void imp(int n){
-	for(int i=0;i<n;i++){	
-		for(int j=0;j<n;j++){
+	for(int i=0;i<=n;i++){	
+		for(int j=0;j<=n;j++){
 			cout <<	setw(6) << G[i][j] <<  " "; 
 		}	
 		cout << endl;
@@ -34,7 +34,7 @@ float floyd(int n){
 	for(int i=1;i<=n;i++){	
 		for(int j=1;j<=n;j++){
 			if(G[i][j] != 99999 && i!=j){
-				soma = G[i][j];
+				soma += G[i][j];
 				c++;
 			}
 		}
@@ -48,6 +48,7 @@ float floyd(int n){
 int main(){
 	int a,b,casos=1;
 	int maior;
+
 	while(1){
 		for(int i=0;i<101;i++){	
 			for(int j=0;j<101;j++){
@@ -68,11 +69,7 @@ int main(){
 				}
 			}while(a!=0);
 		}
-		cout << maior << endl;
-		//imp(maior);
-		//cout << "Case " << casos++ << ": average length between pages = " << floyd(maior) << " clicks" << endl;
 		cout << "Case " << casos++ << ": average length between pages = " << setprecision(3) << fixed << floyd(maior) << " clicks\n";
-		//imp(maior);
 	}
 	return 0;
 }

@@ -22,7 +22,8 @@ void dfs(int a, int b){
         J=b+dj[i];
         if(I>=0 && I<m && J>=0 && J<n && !visited[I][J]){
             visited[I][J]=1;
-            if(v[I][J]=='@') dfs(I,J);
+            if(v[I][J]=='@')
+				dfs(I,J);
         }
     }
 }
