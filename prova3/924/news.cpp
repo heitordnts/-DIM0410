@@ -6,19 +6,17 @@ unordered_set<int> visitados;
 map<int, list<int> > G;
 
 int dias[2501];
+int niveis[2501];
 
 int bfs(int orig){
 	queue<int> q;
+	niveis[orig] = 1;	
 	int temp,dia=0;
-	int M=0;
 	q.push(orig);
 	while(!q.empty()){
 		temp = q.front();
 		q.pop();
-		if(temp == -1){
-			dia++;
-			continue;
-		}
+
 		if(visitados.find(temp) != visitados.end()){
 			continue;
 		}
@@ -26,17 +24,13 @@ int bfs(int orig){
 			visitados.insert(temp);
 		}
 
-		cout << temp <<": "<< endl;
-			
-		M=0;
 		for(auto &No: G[temp]){
-			cout << No << endl;
+			if( niveis[No] == 0)
+				niveis[No] = niveis[temp] + 1;
 			if(visitados.find(No) == visitados.end()){
 				q.push(No);			
-				dias[dia]++;
 			}
 		}
-		q.push(-1);
 	}
 }
 
@@ -45,8 +39,8 @@ void dfs(int a,int dia){
 	cout << a << ": " ;
 	for(auto &i:G[a]){
 		cout << i << endl;
-		dias[dia]++;	
-		if(visitados.find(i) == visitados.end()){
+		if(visitados.find(i) == visitados.end() || dia < dias[dia]){
+			dias[dia]++;	
 			dfs(i,dia+1);
 		}
 	}
@@ -78,12 +72,19 @@ int main(){
 	cin >> t;
 	for(int j=0;j<t;j++){
 		cin >> c;
-		memset(dias,0,sizeof dias);
+		memset(niveis,0,sizeof niveis);
 		//dfs(c,0);
 		bfs(c);
+		/*
+		
+		*/
+		for( int i=0;i<e;i++){
+			dias[niveis[i]]++;
+		}
 		for(int i=0;i<10;i++){
 			cout << dias[i] << " " ;
 		}
+		cout << endl;
 		cout << endl;
 		
 	}
